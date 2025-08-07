@@ -31,6 +31,7 @@ export function initState(props: any, emit: any) {
   const [left, setLeft] = useState<number>(props.x)
   const [top, setTop] = useState<number>(props.y)
   const [enable, setEnable] = useState<boolean>(props.active)
+  const [blur, setBlur] = useState<boolean>(props.blur)
   const [dragging, setDragging] = useState<boolean>(false)
   const [resizing, setResizing] = useState<boolean>(false)
   const [resizingHandle, setResizingHandle] = useState<ResizingHandle>('')
@@ -73,12 +74,14 @@ export function initState(props: any, emit: any) {
       setEnable(newVal)
     }
   )
+  watch(() => props.blur, (value: boolean) => setBlur(value))
   return {
     id: getId(),
     width,
     height,
     top,
     left,
+    blur,
     enable,
     dragging,
     resizing,
@@ -243,7 +246,7 @@ export function initDraggableContainer(
   containerProvider: ContainerProvider | null,
   parentSize: ReturnType<typeof initParent>
 ) {
-  const { left: x, top: y, width: w, height: h, dragging, id } = containerProps
+  const { left: x, top: y, width: w, height: h, dragging, id, blur } = containerProps
   const {
     setDragging,
     setEnable,
@@ -260,6 +263,8 @@ export function initDraggableContainer(
   const _unselect = (e: HandleEvent) => {
     const target = e.target
     if (!containerRef.value?.contains(<Node>target)) {
+      // 未点击到组件时是否自动失焦
+      if (!blur.value) return;
       setEnable(false)
       setDragging(false)
       setResizing(false)

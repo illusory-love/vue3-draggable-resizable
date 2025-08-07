@@ -243,6 +243,17 @@ You can use "v-model:active" to keeps it up-to-date
 <Vue3DraggableResizable v-model:active="100" />
 ```
 
+#### blur
+
+type: `Boolean`<br>
+default: `true`<br>
+
+When clicking outside the component, whether to handle the loss of focus related behavior
+
+```html
+<Vue3DraggableResizable :blur="100" />
+```
+
 #### draggable
 
 type: `Boolean`<br>

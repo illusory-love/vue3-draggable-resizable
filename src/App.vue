@@ -30,6 +30,7 @@
         :disabledH="false"
         :disabledY="false"
         :lockAspectRatio="true"
+        :blur="blur"
         classNameHandle="my-handle"
         @activated="print('activated')"
         @deactivated="print('deactivated')"
@@ -62,6 +63,7 @@ export default defineComponent({
       active: false,
       draggable: true,
       resizable: true,
+      blur: true
     };
   },
   mounted() {},

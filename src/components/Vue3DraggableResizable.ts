@@ -89,6 +89,10 @@ const VdrProps = {
     type: Boolean,
     default: false
   },
+  blur: {
+    type: Boolean, 
+    default: true
+  },
   parent: {
     type: Boolean,
     default: false
