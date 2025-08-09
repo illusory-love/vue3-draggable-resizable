@@ -193,6 +193,9 @@ const VueDraggableResizable = defineComponent({
       emit
     )
     watchProps(props, limitProps)
+    // 组件初始化时处理activated事件 
+    props.active && emit('activated')
+
     return {
       containerRef,
       containerProvider,
