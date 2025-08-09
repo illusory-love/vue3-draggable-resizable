@@ -10,6 +10,13 @@
 
 </div>
 
+
+**提了 `pr` 原作者长时间没反应，着急用，发个临时版本先用着**
+
+**慎用** **慎用** **慎用**
+-----
+
+
 > [Vue3 组件] 用于拖拽调整位置和大小的的组件，同时支持冲突检测，元素吸附对齐，实时参考线。
 > [ Vue3 Component ] Draggable and resizable component for vue3, and, support element adsorption alignment, real-time reference line, etc.
 
