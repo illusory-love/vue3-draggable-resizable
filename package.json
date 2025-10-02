@@ -1,7 +1,7 @@
 {
   "name": "vue3-draggable-resizable-temp",
   "private": false,
-  "version": "1.6.3",
+  "version": "1.6.6",
   "type": "module",
   "description": "[Vue3 Component] 拖拽缩放并具有自动吸附对齐、参考线等功能",
   "scripts": {
@@ -41,5 +41,11 @@
   "main": "src/index.js",
   "module": "src/index.js",
   "unpkg": "src/index.js",
-  "typings": "typings/index.d.ts"
+  "typings": "typings/index.d.ts",
+  "files": [
+    "dist",
+    "src",
+    "README.md",
+    "LICENSE"
+  ]
 }
