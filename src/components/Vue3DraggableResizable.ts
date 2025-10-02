@@ -263,8 +263,10 @@ const VueDraggableResizable = defineComponent({
             ],
             style: { display: this.enable ? 'block' : 'none' },
             onMousedown: (e: MouseEvent) =>
+              // @ts-ignore
               this.resizeHandleDown(e, <ResizingHandle>item),
             onTouchstart: (e: TouchEvent) =>
+              // @ts-ignore
               this.resizeHandleDown(e, <ResizingHandle>item)
           })
         )

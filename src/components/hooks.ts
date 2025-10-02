@@ -265,6 +265,7 @@ export function initDraggableContainer(
   const documentElement = document.documentElement
   const _unselect = (e: HandleEvent) => {
     const target = e.target
+    // @ts-ignore
     if (!containerRef.value?.contains(<Node>target)) {
       // 未点击到组件时是否自动失焦
       if (!blur.value) return;
@@ -294,7 +295,7 @@ export function initDraggableContainer(
   const handleDrag = (e: MouseEvent) => {
     e.preventDefault()
     if (!(dragging.value && containerRef.value)) return
-    const [pageX, pageY] = getPosition(e)
+    const [pageX = 0, pageY = 0] = getPosition(e)
     const deltaX = pageX - lstPageX
     const deltaY = pageY - lstPageY
     let newLeft = lstX + deltaX
@@ -356,8 +357,8 @@ export function initDraggableContainer(
       setDragging(true)
       lstX = x.value
       lstY = y.value
-      lstPageX = getPosition(e)[0]
-      lstPageY = getPosition(e)[1]
+      lstPageX = getPosition(e)[0] ?? 0
+      lstPageY = getPosition(e)[1] ?? 0
       // document.documentElement.addEventListener('mousemove', handleDrag)
       // document.documentElement.addEventListener('mouseup', handleUp)
       addEvent(documentElement, MOVE_HANDLES, handleDrag)
@@ -431,7 +432,7 @@ export function initResizeHandle(
   const documentElement = document.documentElement
   const resizeHandleDrag = (e: HandleEvent) => {
     e.preventDefault()
-    let [_pageX, _pageY] = getPosition(e)
+    let [_pageX = 0, _pageY = 0] = getPosition(e)
     let deltaX = _pageX - lstPageX
     let deltaY = _pageY - lstPageY
     let _deltaX = deltaX
@@ -493,8 +494,8 @@ export function initResizeHandle(
     e.stopPropagation()
     setResizingHandle(handleType)
     setResizing(true)
-    idx0 = handleType[0]
-    idx1 = handleType[1]
+    idx0 = handleType[0] ?? ''
+    idx1 = handleType[1] ?? ''
     if (aspectRatio.value) {
       if (['tl', 'tm', 'ml', 'bl'].includes(handleType)) {
         idx0 = 't'
@@ -533,8 +534,8 @@ export function initResizeHandle(
     lstX = left.value
     lstY = top.value
     const lstPagePosition = getPosition(e)
-    lstPageX = lstPagePosition[0]
-    lstPageY = lstPagePosition[1]
+    lstPageX = lstPagePosition[0] ?? 0
+    lstPageY = lstPagePosition[1] ?? 0
     tmpAspectRatio = aspectRatio.value
     emit('resize-start', {
       x: left.value,
