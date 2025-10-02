@@ -1,0 +1,45 @@
+{
+  "name": "vue3-draggable-resizable-temp",
+  "private": false,
+  "version": "1.6.3",
+  "type": "module",
+  "description": "[Vue3 Component] 拖拽缩放并具有自动吸附对齐、参考线等功能",
+  "scripts": {
+    "serve": "vite",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^3.5.22"
+  },
+  "devDependencies": {
+    "@types/node": "^24.6.0",
+    "@vitejs/plugin-vue": "^6.0.1",
+    "@vue/tsconfig": "^0.8.1",
+    "sass-embedded": "^1.93.2",
+    "typescript": "~5.9.3",
+    "vite": "^7.1.8",
+    "vue-tsc": "^3.1.0"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/a7650/vue3-draggable-resizable.git"
+  },
+  "bugs": {
+    "url": "https://github.com/a7650/vue3-draggable-resizable/issues"
+  },
+  "homepage": "https://github.com/a7650/vue3-draggable-resizable",
+  "keywords": [
+    "vue3",
+    "component",
+    "draggable",
+    "resizable",
+    "拖拽",
+    "吸附对齐"
+  ],
+  "main": "src/index.js",
+  "module": "src/index.js",
+  "unpkg": "src/index.js",
+  "typings": "typings/index.d.ts"
+}
