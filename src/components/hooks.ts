@@ -63,6 +63,7 @@ export function initState(props: any, emit: any) {
   })
   watch(enable, (newVal, oldVal) => {
     emit('update:active', newVal)
+    console.log(newVal, oldVal)
     if (!oldVal && newVal) {
       emit('activated')
     } else if (oldVal && !newVal) {
@@ -352,7 +353,6 @@ export function initDraggableContainer(
     emit('dragging', { x: setLeft(newLeft), y: setTop(newTop) })
   }
   const handleDown = (e: HandleEvent) => {
-    // setEnable(true);
     if (draggable.value) {
       setDragging(true)
       lstX = x.value
@@ -387,8 +387,8 @@ export function initDraggableContainer(
     el.style.top = y + 'px'
     // document.documentElement.addEventListener('mousedown', _unselect)
     // el.addEventListener('mousedown', handleDown)
-    addEvent(documentElement, DOWN_HANDLES, _unselect)
     addEvent(el, DOWN_HANDLES, handleDown)
+    addEvent(documentElement, DOWN_HANDLES, _unselect, true) // 将事件冒泡进行反转，当多组件时调整事件顺序
   })
   onUnmounted(() => {
     if (!containerRef.value) return

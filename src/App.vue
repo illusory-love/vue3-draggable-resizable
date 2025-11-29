@@ -1,36 +1,25 @@
 <template>
-  <div>
-    x:{{ x }} <button @click="x += 10">+</button><button @click="x -= 10">-</button>
-  </div>
-  <div>
-    y:{{ y }}<button @click="y += 10">+</button><button @click="y -= 10">-</button>
-  </div>
-  <div>
-    w:{{ w }}<button @click="w += 10">+</button><button @click="w -= 10">-</button>
-  </div>
-  <div>
-    h: {{ h }}<button @click="h += 10">+</button><button @click="h -= 10">-</button>
-  </div>
-  <div>active:{{ active }}<br /></div>
   <div class="parent">
     <Vue3DraggableResizable
-      :initW="40"
-      :initH="80"
-      v-model:x="x"
-      v-model:y="y"
-      v-model:w="w"
-      v-model:h="h"
-      v-model:active="active"
-      :draggable="draggable"
-      :resizable="resizable"
+      v-for="(item, index) in list"
+      :key="index"
+      :initW="item.initW"
+      :initH="item.initH"
+      v-model:x="item.x"
+      v-model:y="item.y"
+      v-model:w="item.w"
+      v-model:h="item.h"
+      v-model:active="item.active"
+      :draggable="item.draggable"
+      :resizable="item.resizable"
       :parent="true"
       :disabledX="false"
       :disabledW="false"
       :disabledH="false"
       :disabledY="false"
       :lockAspectRatio="true"
-      :blur="blur"
-      :focus="isFocus"
+      :blur="item.blur"
+      :focus="item.isFocus"
       classNameHandle="my-handle"
       @activated="print('activated')"
       @deactivated="print('deactivated')"
@@ -41,7 +30,7 @@
       @drag-end="print('drag-end', $event)"
       @resize-end="print('resize-end', $event)"
     >
-      This is a test example
+      {{ item.text }}
     </Vue3DraggableResizable>
   </div>
 </template>
@@ -50,15 +39,33 @@
 import { ref } from 'vue';
 import Vue3DraggableResizable from "./components/Vue3DraggableResizable";
 
-const x = ref<number>(0);
-const y = ref<number>(0);
-const w = ref<number>(0);
-const h = ref<number>(0);
-const active = ref<boolean>(false);
-const draggable = ref<boolean>(false);
-const resizable = ref<boolean>(false);
-const blur = ref<boolean>(true);
-const isFocus = ref<boolean>(true);
+const list = ref<any>([{
+  initW: 140,
+  initH: 30,
+  x: 10,
+  y: 20,
+  w: 0,
+  h: 0,
+  active: false,
+  draggable: true,
+  resizable: true,
+  blur: true,
+  isFocus: true,
+  text: 'example A'
+}, {
+  initW: 140,
+  initH: 30,
+  x: 10,
+  y: 80,
+  w: 0,
+  h: 0,
+  active: false,
+  draggable: true,
+  resizable: true,
+  blur: true,
+  isFocus: true,
+  text: 'example B'
+}])
 
 const print = (_val: any, _e?: any) => {
   console.log('print:', _val, _e);

@@ -22,7 +22,8 @@ function createEventListenerFunction(
   return <K extends keyof HTMLElementEventMap>(
     el: HTMLElement,
     events: K | K[],
-    handler: any
+    handler: any,
+    capture: boolean = false
   ) => {
     if (!el) {
       return
@@ -30,7 +31,7 @@ function createEventListenerFunction(
     if (typeof events === 'string') {
       events = [events]
     }
-    events.forEach((e) => el[type](e, handler, { passive: false }))
+    events.forEach((e) => el[type](e, handler, { capture, passive: false }))
   }
 }
 
