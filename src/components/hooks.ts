@@ -5,7 +5,8 @@ import {
   getId,
   getReferenceLineMap,
   addEvent,
-  removeEvent
+  removeEvent,
+  closest
 } from './utils'
 import type {
   ContainerProvider,
@@ -94,6 +95,7 @@ export function initState(props: any, emit: any) {
     resizingMinWidth,
     resizingMinHeight,
     aspectRatio,
+    classNameOperation: props.classNameOperation,
     setFocus,
     setEnable,
     setDragging,
@@ -265,11 +267,16 @@ export function initDraggableContainer(
   let referenceLineMap: ReferenceLineMap | null = null
   const documentElement = document.documentElement
   const _unselect = (e: HandleEvent) => {
-    const target = e.target
+    const target = e.target as any;
     // @ts-ignore
     if (!containerRef.value?.contains(<Node>target)) {
+      // 是否传递了操作区域的className
+      let isNotPass = false;
+      if (containerProps.classNameOperation) {
+        isNotPass = !!closest(target, containerProps.classNameOperation);
+      }
       // 未点击到组件时是否自动失焦
-      if (!blur.value) return;
+      if (!blur.value || isNotPass) return;
       setEnable(false)
       setDragging(false)
       setResizing(false)

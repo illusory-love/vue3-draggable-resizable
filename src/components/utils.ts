@@ -91,3 +91,17 @@ export function getReferenceLineMap(
   }
   return referenceLineMap
 }
+
+export function closest(element: Element | null, selector: string): Element | null {
+  // 循环检查当前元素及其父元素
+  while (element !== null) {
+    // 判断当前元素是否匹配选择器
+    if (element.matches(selector)) {
+      return element;
+    }
+    // 如果不匹配，则查找父元素
+    element = element.parentElement;
+  }
+  // 如果没有找到匹配的元素，则返回 null
+  return null;
+}

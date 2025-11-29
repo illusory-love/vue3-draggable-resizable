@@ -435,6 +435,17 @@ Used to set the custom `class` of a draggable-resizable component when is active
 <Vue3DraggableResizable classNameActive="active" />
 ```
 
+#### classNameOperation
+
+type: `String`<br>
+default: ``
+
+Clicking this element or its interior will not trigger the `deactivated` event.
+
+```html
+<Vue3DraggableResizable classNameOperation=".oper" />
+```
+
 #### classNameHandle
 
 type: `String`<br>
